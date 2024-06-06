@@ -123,8 +123,7 @@ class _SetPasswordFormState extends State<SetPasswordForm> {
                   ),
                 ),
                 AppPrimaryButton(
-                  isDisabled: !setPassword.hasAtLeastTwoChecks || setPassword.state.isLoading,
-                  onPressed: loginBloc.onNewPasswordSubmitted,
+                  onPressed: (!setPassword.hasAtLeastTwoChecks) ? null : loginBloc.onNewPasswordSubmitted,
                   child: Text(context.translate.actionContinue),
                 )
               ],

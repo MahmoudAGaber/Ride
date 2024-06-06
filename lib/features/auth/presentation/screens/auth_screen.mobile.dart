@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_common/core/color_palette/color_palette.dart';
 import 'package:flutter_common/core/presentation/buttons/app_back_button.dart';
 import 'package:rider_flutter/config/locator/locator.dart';
-import 'package:rider_flutter/features/auth/presentation/blocs/onboarding_cubit.dart';
 import 'package:rider_flutter/features/auth/presentation/widgets/login_form_builder.dart';
 
 import '../blocs/login.dart';
@@ -18,7 +17,7 @@ class AuthScreenMobile extends StatelessWidget {
       body: Column(children: [
         Container(
           width: double.infinity,
-          color: ColorPalette.primary99,
+          //color: ColorPalette.primary99,
           child: SafeArea(
             bottom: false,
             child: Column(
@@ -29,17 +28,11 @@ class AuthScreenMobile extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                   child: BlocBuilder<LoginBloc, LoginState>(
                     builder: (context, state) {
-                      return AppBackButton(
-                        onPressed: () {
-                          switch (state.loginPage) {
-                            case EnterNumber():
-                              locator<OnboardingCubit>().previousPage();
-                              break;
-
-                            default:
-                              locator<LoginBloc>().onBackButtonPressed();
-                          }
-                        },
+                      return state.loginPage.maybeMap(
+                        enterNumber: (number) => const SizedBox(),
+                        orElse: () => AppBackButton(
+                          onPressed: locator<LoginBloc>().onBackButtonPressed,
+                        ),
                       );
                     },
                   ),

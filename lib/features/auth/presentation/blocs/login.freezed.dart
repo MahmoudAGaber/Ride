@@ -12,7 +12,7 @@ part of 'login.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LoginEvent {
@@ -3237,8 +3237,8 @@ class __$$IdleImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$IdleImpl extends _Idle {
-  const _$IdleImpl() : super._();
+class _$IdleImpl implements _Idle {
+  const _$IdleImpl();
 
   @override
   String toString() {
@@ -3323,9 +3323,8 @@ class _$IdleImpl extends _Idle {
   }
 }
 
-abstract class _Idle extends PageState {
+abstract class _Idle implements PageState {
   const factory _Idle() = _$IdleImpl;
-  const _Idle._() : super._();
 }
 
 /// @nodoc
@@ -3346,8 +3345,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl extends _Loading {
-  const _$LoadingImpl() : super._();
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
 
   @override
   String toString() {
@@ -3432,9 +3431,8 @@ class _$LoadingImpl extends _Loading {
   }
 }
 
-abstract class _Loading extends PageState {
+abstract class _Loading implements PageState {
   const factory _Loading() = _$LoadingImpl;
-  const _Loading._() : super._();
 }
 
 /// @nodoc
@@ -3470,8 +3468,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl extends _Error {
-  const _$ErrorImpl({required this.errorMessage}) : super._();
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl({required this.errorMessage});
 
   @override
   final String errorMessage;
@@ -3568,9 +3566,8 @@ class _$ErrorImpl extends _Error {
   }
 }
 
-abstract class _Error extends PageState {
+abstract class _Error implements PageState {
   const factory _Error({required final String errorMessage}) = _$ErrorImpl;
-  const _Error._() : super._();
 
   String get errorMessage;
   @JsonKey(ignore: true)

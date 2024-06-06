@@ -22,7 +22,7 @@ class _EnterNumberFormState extends State<EnterNumberForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginBloc, LoginState>(
+    return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         state.loginPage.mapOrNull(enterNumber: (enterNumber) {
           enterNumber.state.mapOrNull(error: (error) {
@@ -30,13 +30,13 @@ class _EnterNumberFormState extends State<EnterNumberForm> {
           });
         });
       },
-      builder: (context, state) => state.loginPage.maybeMap(
-        orElse: () => const SizedBox(),
-        enterNumber: (enterNumber) => Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Column(
                   children: [
                     Text(
@@ -60,37 +60,34 @@ class _EnterNumberFormState extends State<EnterNumberForm> {
                     AppPhoneNumberTextField(
                       initalValue: (Constants.defaultCountry, ""),
                       onChanged: (value) {
-                        setState(() {
-                          phoneNumber = (value!.$1, value.$2!);
-                        });
+                        phoneNumber = (value!.$1, value.$2!);
                       },
                     ),
                   ],
                 ),
               ),
             ),
-            AppPrimaryButton(
-              isDisabled: enterNumber.state.isLoading || phoneNumber.$2.length < 6,
-              onPressed: () {
-                locator<LoginBloc>().onNumberVerificationRequested(
-                  mobileNumber: phoneNumber.$1.e164CC + phoneNumber.$2,
-                  countryCode: phoneNumber.$1.iso2CC,
-                );
-              },
-              child: Text(context.translate.signInSignUp),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            AppTextButton(
-              text: context.translate.skipForNow,
-              onPressed: () {
-                locator<OnboardingCubit>().skip();
-                locator<LoginBloc>().onVerificationSkipped();
-              },
-            )
-          ],
-        ),
+          ),
+          AppPrimaryButton(
+            onPressed: () {
+              locator<LoginBloc>().onNumberVerificationRequested(
+                mobileNumber: phoneNumber.$1.e164CC + phoneNumber.$2,
+                countryCode: phoneNumber.$1.iso2CC,
+              );
+            },
+            child: Text(context.translate.signInSignUp),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          AppTextButton(
+            text: context.translate.skipForNow,
+            onPressed: () {
+              locator<OnboardingCubit>().skip();
+              locator<LoginBloc>().onVerificationSkipped();
+            },
+          )
+        ],
       ),
     );
   }

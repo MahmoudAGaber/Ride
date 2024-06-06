@@ -16,7 +16,7 @@ class LoginFormBuilder {
 
   Widget get header {
     return switch (loginPage) {
-      EnterNumber() => Assets.images.signIn1.image(height: 150),
+      EnterNumber() => Assets.images.signIn1.image(height: 250),
       EnterOtp() => Padding(
           padding: const EdgeInsets.all(16),
           child: Assets.images.signInOtp.image(height: 150),

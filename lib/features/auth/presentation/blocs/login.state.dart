@@ -44,10 +44,6 @@ sealed class PageState with _$PageState {
   const factory PageState.idle() = _Idle;
   const factory PageState.loading() = _Loading;
   const factory PageState.error({required String errorMessage}) = _Error;
-
-  const PageState._();
-
-  bool get isLoading => maybeMap(loading: (_) => true, orElse: () => false);
 }
 
 extension SetPasswordX on SetPassword {

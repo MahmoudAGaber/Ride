@@ -61,6 +61,7 @@ class AuthScreenDesktop extends StatelessWidget {
                                   child: AppStepSlider(
                                     count: 2,
                                     currentStep: currentStep,
+                                    onTap: (){},
                                   ),
                                 ),
                                 CupertinoButton(

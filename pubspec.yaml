@@ -64,6 +64,8 @@ dependencies:
   flutter_common:
     path: ../../libs/flutter_common
   lottie: ^3.1.0
+  percent_indicator: ^4.2.3
+
 
   # Network
   graphql: ^5.2.0-beta.7

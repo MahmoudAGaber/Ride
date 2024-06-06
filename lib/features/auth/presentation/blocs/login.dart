@@ -34,11 +34,6 @@ class LoginBloc extends Cubit<LoginState> {
     required String mobileNumber,
     required String countryCode,
   }) async {
-    emit(
-      state.copyWith.loginPage.call(
-        state: const PageState.loading(),
-      ),
-    );
     final result = await repository.verifyNumber(
       mobileNumber: mobileNumber,
       countryCode: countryCode,

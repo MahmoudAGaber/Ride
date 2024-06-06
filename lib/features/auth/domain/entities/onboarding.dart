@@ -15,19 +15,34 @@ class OnBoardingItem with _$OnBoardingItem {
 }
 
 List<OnBoardingItem> onboardingItems(BuildContext context) => [
-      OnBoardingItem(
-        image: Assets.images.onboarding1,
-        title: context.translate.welcomeTitle,
-        description: context.translate.welcomeSubtitle,
-      ),
-      OnBoardingItem(
-        image: Assets.images.onboarding2,
-        title: context.translate.onboardingRewardTitle,
-        description: context.translate.onboardingRewardSubtitle,
-      ),
-      OnBoardingItem(
-        image: Assets.images.language,
-        title: context.translate.selectLanguage,
-        description: '',
-      ),
-    ];
+  OnBoardingItem(
+    image: Assets.images.onboarding1,
+    title: "",
+    description: "",
+  ),
+  OnBoardingItem(
+    image: Assets.images.onboarding1,
+    title: context.translate.welcomeTitle,
+    description: context.translate.welcomeSubtitle,
+  ),
+  OnBoardingItem(
+    image: Assets.images.onboarding2,
+    title: context.translate.onboardingRewardTitle,
+    description: context.translate.onboardingRewardSubtitle,
+  ),
+  OnBoardingItem(
+    image: Assets.images.onboarding3,
+    title: context.translate.onboardingRewardTitle,
+    description: context.translate.onboardingRewardSubtitle,
+  ),
+  OnBoardingItem(
+    image: Assets.images.onboarding4,
+    title: context.translate.onboardingRewardTitle,
+    description: context.translate.onboardingRewardSubtitle,
+  ),
+  // OnBoardingItem(
+  //   image: Assets.images.language,
+  //   title: context.translate.selectLanguage,
+  //   description: '',
+  // ),
+];

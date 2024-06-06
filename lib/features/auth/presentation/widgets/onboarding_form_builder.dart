@@ -14,46 +14,59 @@ class OnboardingFormBuilder {
   });
 
   Widget buildHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: onBoardingItem(context).image.image(),
-    );
+    if (onboardingItemIndex == 0) {
+      return SizedBox();
+    }
+    else{
+      return Padding(
+          padding: const EdgeInsets.all(32),
+          child: onBoardingItem(context).image.image(height: 200)
+      );
+    }
+
   }
 
   Widget buildFooter(BuildContext context) {
-    if (onboardingItemIndex < 2) {
-      return buildInformationFooter(context);
-    } else {
+    if (onboardingItemIndex == 0) {
       return buildLanguageSelectionFooter(context);
+
+    } else {
+      return buildInformationFooter(context);
     }
   }
 
   Widget buildInformationFooter(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 12,
-        ),
-        Text(
-          onBoardingItem(context).title,
-          style: context.headlineSmall?.copyWith(
-            color: context.theme.colorScheme.onSurface,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height*.35,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 12,
           ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Text(
-          onBoardingItem(context).description,
-          style: context.bodyMedium?.copyWith(
-            color: context.theme.colorScheme.onSurfaceVariant,
+          Text(
+            onBoardingItem(context).title,
+            style: context.headlineSmall?.copyWith(
+              color: context.theme.colorScheme.onSurface,
+            ),
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-      ],
+          const SizedBox(
+            height: 16,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width*.7,
+            child: Text(
+              onBoardingItem(context).description,
+              style: context.bodyMedium?.copyWith(
+                color: context.theme.colorScheme.onSurfaceVariant,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+        ],
+      ),
     );
   }
 
@@ -69,7 +82,7 @@ class OnboardingFormBuilder {
           height: 16,
         ),
         SizedBox(
-          height: 350,
+          height: MediaQuery.of(context).size.height*.6,
           child: BlocBuilder<SettingsCubit, SettingsState>(
             builder: (context, state) {
               return LanguageList(
