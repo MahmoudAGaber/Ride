@@ -43,7 +43,7 @@ class _FavoriteLocationsListScreenState extends State<FavoriteLocationsListScree
           children: [
             AppTopBar(
               title: context.translate.favoriteLocations,
-              subtitle: context.translate.favoriteLocationsSubtitle,
+              // subtitle: context.translate.favoriteLocationsSubtitle,
             ),
             const SizedBox(height: 32),
             Expanded(
@@ -55,7 +55,7 @@ class _FavoriteLocationsListScreenState extends State<FavoriteLocationsListScree
                         list: loaded.data
                             .map(
                               (e) => e.$2,
-                            )
+                        )
                             .whereNotNull()
                             .toList(),
                       );
@@ -76,7 +76,7 @@ class _FavoriteLocationsListScreenState extends State<FavoriteLocationsListScree
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 ...loaded.data.map(
-                                  (e) => Column(
+                                      (e) => Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       AppFavoriteLocationItem(
@@ -89,8 +89,8 @@ class _FavoriteLocationsListScreenState extends State<FavoriteLocationsListScree
                                             e.$2 == null
                                                 ? route
                                                 : EditFavoriteLocationRoute(
-                                                    entity: e.$2!,
-                                                  ),
+                                              entity: e.$2!,
+                                            ),
                                           );
                                           locator<FavoriteLocationsCubit>().onStarted();
                                         },

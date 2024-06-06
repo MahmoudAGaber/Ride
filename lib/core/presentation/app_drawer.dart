@@ -32,79 +32,72 @@ class AppDrawer extends StatelessWidget {
         ),
       ],
       child: Container(
-        width: 320,
+        width: 290,
         decoration: const BoxDecoration(
           color: ColorPalette.neutralVariant99,
           borderRadius: BorderRadius.horizontal(
-            right: Radius.circular(30),
+            right: Radius.circular(65),
           ),
         ),
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 32,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back_ios,size: 22,)),
+                ),
+                SizedBox(height: 8,),
                 if (showHeader)
-                  Container(
-                    padding: const EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.horizontal(
-                        right: Radius.circular(30),
-                      ),
-                      image: DecorationImage(
-                        image: Assets.images.drawerTopBackground.provider(),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: SafeArea(
-                      bottom: false,
-                      right: false,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: ColorPalette.primary95,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Transform.scale(
-                              scale: 1.3,
-                              child: AppAvatar(
-                                avatar: state.map(
-                                  authenticated: (authenticated) => authenticated.avatar,
-                                  unauthenticated: (unauthenticated) => none(),
-                                ),
-                                defaultAvatarPath: Assets.avatars.a1.path,
-                              ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Transform.scale(
+                          scale: 1.5,
+                          child: AppAvatar(
+                            avatar: state.map(
+                              authenticated: (authenticated) => authenticated.avatar,
+                              unauthenticated: (unauthenticated) => none(),
                             ),
-                            const SizedBox(width: 32),
-                            state.map(
-                                unauthenticated: (_) => const SizedBox(),
-                                authenticated: (authenticated) {
-                                  return Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        authenticated.profile.fullName,
-                                        style: context.labelMedium,
-                                      ),
-                                      Text(
-                                        authenticated.profile.mobileNumberFormatted,
-                                        style: context.bodySmall,
-                                      )
-                                    ],
-                                  );
-                                }),
-                          ],
+                            defaultAvatarPath: Assets.avatars.a1.path,
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 8),
+                        state.map(
+                            unauthenticated: (_) => const SizedBox(),
+                            authenticated: (authenticated) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    authenticated.profile.fullName,
+                                    style: context.labelLarge,
+                                  ),
+                                  Text(
+                                    authenticated.profile.email!,
+                                    style: context.bodySmall,
+                                  )
+                                ],
+                              );
+                            }),
+                      ],
                     ),
                   ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    child: SingleChildScrollView(
-                      child: BlocBuilder<RouteCubit, NavItem>(
-                        builder: (context, stateRoute) {
-                          return Column(
+                Container(
+                  child: SingleChildScrollView(
+                    child: BlocBuilder<RouteCubit, NavItem>(
+                      builder: (context, stateRoute) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          child: Column(
                             children: [
                               context.responsive(
                                 const SizedBox(),
@@ -116,25 +109,26 @@ class AppDrawer extends StatelessWidget {
                                 ),
                               ),
                               ...(state.isAuthenticated
-                                      ? signedInNavItems.where(
-                                          (element) => context.responsive(
-                                            true,
-                                            xl: element != NavItem.announcements,
-                                          ),
-                                        )
-                                      : signedOutNavItems)
+                                  ? signedInNavItems.where(
+                                    (element) => context.responsive(
+                                  true,
+                                  xl: element != NavItem.announcements,
+                                ),
+                              )
+                                  : signedOutNavItems)
                                   .map(
-                                (e) => AppDrawerItem(
+                                    (e) => AppDrawerItem(
                                   icon: e.icon,
                                   title: e.name(context),
                                   isSelected: stateRoute == e,
                                   onPressed: () => e.onPressed(context),
                                 ),
-                              )
+                              ),
+
                             ],
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -142,16 +136,10 @@ class AppDrawer extends StatelessWidget {
                   return state.maybeMap(
                     orElse: () => const SizedBox(),
                     authenticated: (authenticated) {
-                      return SafeArea(
-                        top: false,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: AppDrawerItem(
-                            icon: NavItem.logout.icon,
-                            title: NavItem.logout.name(context),
-                            onPressed: () => NavItem.logout.onPressed(context),
-                          ),
-                        ),
+                      return AppDrawerItem(
+                        icon: NavItem.logout.icon,
+                        title: NavItem.logout.name(context),
+                        onPressed: () => NavItem.logout.onPressed(context),
                       );
                     },
                   );
