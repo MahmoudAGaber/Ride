@@ -62,7 +62,7 @@ extension NavItemX on NavItem {
       case NavItem.settings:
         return context.translate.settings;
       case NavItem.about:
-        return context.translate.about;
+        return "context.translate.about";
       case NavItem.logout:
         return context.translate.logout;
     }
@@ -145,9 +145,7 @@ extension NavItemX on NavItem {
             ),
             applicationVersion: "${value.version} (Build ${value.buildNumber})",
             applicationName: Env.appName,
-            applicationLegalese: context.translate.copyright_notice(
-              Env.companyName,
-            ),
+            applicationLegalese: "context.translate.copyright_notice(Env.companyName,)",
           ),
         );
         break;

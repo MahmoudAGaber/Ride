@@ -49,22 +49,24 @@ class _ServicesSelectionSheetState extends State<ServicesSelectionSheet> with Ti
     final remoteDataCubit = locator<OrderPreviewCubit>();
 
     return AppCardSheet(
+     // height: 490,
+     //  minSize: .05,
       child: BlocBuilder<OrderPreviewOptionsCubit, OrderPreviewOptionsState>(
         builder: (context, stateOptions) {
           return SafeArea(
             top: false,
             child: DefaultTabController(
               length: widget.serviceCategories.length,
-              initialIndex: stateOptions.selectedServiceCategory == null
-                  ? 0
-                  : widget.serviceCategories.indexOf(stateOptions.selectedServiceCategory!),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
                     child: context.responsive(
-                      const CardHandle(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: const CardHandle(),
+                      ),
                       xl: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: AppBackButton(
@@ -78,15 +80,14 @@ class _ServicesSelectionSheetState extends State<ServicesSelectionSheet> with Ti
                   Visibility(
                     visible: widget.serviceCategories.length > 1,
                     child: SegmentedButton<ServiceCategoryEntity?>(
-                      multiSelectionEnabled: false,
                       onSelectionChanged: (value) => optionsCubit.onServiceCategorySelected(value.first!),
                       segments: widget.serviceCategories
                           .map(
                             (e) => ButtonSegment(
-                              value: e,
-                              label: Text(e.name),
-                            ),
-                          )
+                          value: e,
+                          label: Text(e.name),
+                        ),
+                      )
                           .toList(),
                       selected: {stateOptions.selectedServiceCategory},
                     ),
@@ -94,18 +95,14 @@ class _ServicesSelectionSheetState extends State<ServicesSelectionSheet> with Ti
                   const SizedBox(height: 20),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    height: context.responsive(250),
+                    height: context.responsive(200),
                     child: TabBarView(
-                      physics: const NeverScrollableScrollPhysics(),
                       controller: TabController(
                         length: widget.serviceCategories.length,
-                        initialIndex: stateOptions.selectedServiceCategory == null
-                            ? 0
-                            : widget.serviceCategories.indexOf(stateOptions.selectedServiceCategory!),
                         vsync: this,
                       ),
                       children: widget.serviceCategories.mapIndexed(
-                        (index, e) {
+                            (index, e) {
                           return ListView.separated(
                             padding: EdgeInsets.zero,
                             itemCount: e.services.length,
@@ -138,8 +135,9 @@ class _ServicesSelectionSheetState extends State<ServicesSelectionSheet> with Ti
                       color: ColorPalette.neutralVariant99,
                     ),
                   ),
+                  Divider(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 6),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -147,105 +145,109 @@ class _ServicesSelectionSheetState extends State<ServicesSelectionSheet> with Ti
                           paymentMethod: stateOptions.paymentMethod,
                           onPressed: remoteDataCubit.goToPaymentMethodPage,
                         ),
-                        const Divider(
-                          color: ColorPalette.neutral95,
-                          height: 24,
-                        ),
-                        Row(
-                          children: [
-                            BlocBuilder<OrderPreviewArgsCubit, OrderPreviewArgsState>(
-                              builder: (context, state) {
-                                return AppTextButton(
-                                    isDense: true,
-                                    badge: state.rideOptions.length +
-                                        (state.isTwoWay ? 1 : 0) +
-                                        (state.waitTime == null ? 0 : 1),
-                                    text: context.translate.ridePreferences,
-                                    iconData: Ionicons.options,
-                                    onPressed: () async {
-                                      final dialogResult = await showDialog<(bool, int?, List<RideOptionEntity>)>(
-                                        context: context,
-                                        useSafeArea: false,
-                                        builder: (context) => RidePreferencesDialog(
-                                          currency: widget.currency,
-                                          selectedRideOptions: argsCubit.state.rideOptions,
-                                          rideOptions: optionsCubit.state.selectedService?.rideOptions ?? [],
-                                          isTwoWayTrip: argsCubit.state.isTwoWay,
-                                          defaultWaitTime: argsCubit.state.waitTime,
-                                        ),
-                                      );
-                                      if (dialogResult != null) {
-                                        argsCubit.onRidePreferencesChanged(
-                                          isTwoWayTrip: dialogResult.$1,
-                                          waitTime: dialogResult.$2,
-                                          rideOptions: dialogResult.$3,
-                                        );
-                                      }
-                                    });
-                              },
-                            ),
-                            const Spacer(),
-                            AppTextButton(
-                              isDense: true,
-                              text: context.translate.couponCode,
-                              iconData: Ionicons.ticket,
-                              onPressed: () async {
-                                final dialogResult = await showDialog<String>(
-                                  context: context,
-                                  useSafeArea: false,
-                                  builder: (context) => EnterCouponDialog(
-                                    calculateFareArgs: argsCubit.state.calculateFareArgs,
+                        SizedBox(height: 8,),
+                        // const Divider(
+                        //   color: ColorPalette.neutral95,
+                        //   height: 24,
+                        // ),
+                        // Row(
+                        //   children: [
+                        //     BlocBuilder<OrderPreviewArgsCubit, OrderPreviewArgsState>(
+                        //       builder: (context, state) {
+                        //         return AppTextButton(
+                        //             isDense: true,
+                        //             badge: state.rideOptions.length +
+                        //                 (state.isTwoWay ? 1 : 0) +
+                        //                 (state.waitTime == null ? 0 : 1),
+                        //             text: context.translate.ridePreferences,
+                        //             iconData: Ionicons.options,
+                        //             onPressed: () async {
+                        //               final dialogResult = await showDialog<(bool, int?, List<RideOptionEntity>)>(
+                        //                 context: context,
+                        //                 useSafeArea: false,
+                        //                 builder: (context) => RidePreferencesDialog(
+                        //                   currency: widget.currency,
+                        //                   selectedRideOptions: argsCubit.state.rideOptions,
+                        //                   rideOptions: optionsCubit.state.selectedService?.rideOptions ?? [],
+                        //                   isTwoWayTrip: argsCubit.state.isTwoWay,
+                        //                   defaultWaitTime: argsCubit.state.waitTime,
+                        //                 ),
+                        //               );
+                        //               if (dialogResult != null) {
+                        //                 argsCubit.onRidePreferencesChanged(
+                        //                   isTwoWayTrip: dialogResult.$1,
+                        //                   waitTime: dialogResult.$2,
+                        //                   rideOptions: dialogResult.$3,
+                        //                 );
+                        //               }
+                        //             });
+                        //       },
+                        //     ),
+                        //     const Spacer(),
+                        //     AppTextButton(
+                        //       isDense: true,
+                        //       text: context.translate.couponCode,
+                        //       iconData: Ionicons.ticket,
+                        //       onPressed: () async {
+                        //         final dialogResult = await showDialog<String>(
+                        //           context: context,
+                        //           useSafeArea: false,
+                        //           builder: (context) => EnterCouponDialog(
+                        //             calculateFareArgs: argsCubit.state.calculateFareArgs,
+                        //           ),
+                        //         );
+                        //         if (dialogResult != null) {
+                        //           argsCubit.onCouponCodeChanged(dialogResult);
+                        //         }
+                        //       },
+                        //     ),
+                        //   ],
+                        // ),
+                        // const SizedBox(
+                        //   height: 16,
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Row(
+                            children: [
+                              // AppPrimaryButton(
+                              //   isDisabled: stateOptions.canConfirm == false,
+                              //   onPressed: () async {
+                              //     final result = await showDialog<DateTime>(
+                              //       context: context,
+                              //       useSafeArea: false,
+                              //       builder: (context) => const ReserveTimeDialog(),
+                              //     );
+                              //     if (result != null) {
+                              //       remoteDataCubit.confirmRide(
+                              //         pickupTime: result,
+                              //         args: argsCubit.state.calculateFareArgs,
+                              //         selectedPaymentMethod: stateOptions.paymentMethod!,
+                              //         selectedService: stateOptions.selectedService!,
+                              //       );
+                              //     }
+                              //   },
+                              //   child: const Icon(Ionicons.calendar),
+                              // ),
+                              // const SizedBox(width: 16),
+                              Expanded(
+                                child: AppPrimaryButton(
+                                  isDisabled: stateOptions.canConfirm == false,
+                                  onPressed: () {
+                                    remoteDataCubit.confirmRide(
+                                      pickupTime: DateTime.now(),
+                                      args: argsCubit.state.calculateFareArgs,
+                                      selectedPaymentMethod: stateOptions.paymentMethod!,
+                                      selectedService: stateOptions.selectedService!,
+                                    );
+                                  },
+                                  child: Text(
+                                    context.translate.bookNow,
                                   ),
-                                );
-                                if (dialogResult != null) {
-                                  argsCubit.onCouponCodeChanged(dialogResult);
-                                }
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: [
-                            AppPrimaryButton(
-                              isDisabled: stateOptions.canConfirm == false,
-                              onPressed: () async {
-                                final result = await showDialog<DateTime>(
-                                  context: context,
-                                  useSafeArea: false,
-                                  builder: (context) => const ReserveTimeDialog(),
-                                );
-                                if (result != null) {
-                                  remoteDataCubit.confirmRide(
-                                    pickupTime: result,
-                                    args: argsCubit.state.calculateFareArgs,
-                                    selectedPaymentMethod: stateOptions.paymentMethod!,
-                                    selectedService: stateOptions.selectedService!,
-                                  );
-                                }
-                              },
-                              child: const Icon(Ionicons.calendar),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: AppPrimaryButton(
-                                isDisabled: stateOptions.canConfirm == false,
-                                onPressed: () {
-                                  remoteDataCubit.confirmRide(
-                                    pickupTime: DateTime.now(),
-                                    args: argsCubit.state.calculateFareArgs,
-                                    selectedPaymentMethod: stateOptions.paymentMethod!,
-                                    selectedService: stateOptions.selectedService!,
-                                  );
-                                },
-                                child: Text(
-                                  context.translate.bookNow,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

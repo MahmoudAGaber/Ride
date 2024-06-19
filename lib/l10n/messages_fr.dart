@@ -11,6 +11,26 @@ class SFr extends S {
     return 'Copyright © $company, Tous droits réservés.';
   }
 
+ @override
+  String get call => 'appel';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get cancelMyRide => 'Annuler mon trajet';
+
+  @override
+  String get waitMyRide => 'Attends mon trajet';
+
+  @override
+  String get cancelTrip => 'Annuler mon trajet';
+
+  @override
+  String get backButton=> 'Dos';
+
+
+
   @override
   String get welcomeTitle => 'Bienvenue sur l\'application';
 
@@ -183,6 +203,14 @@ class SFr extends S {
 
   @override
   String get onboardingRewardSubtitle => 'Obtenez des bonus supplémentaires en parrainant un ami, en effectuant des voyages et bien d\'autres encore...';
+
+
+  @override
+  String get onboardingLetStart => 'Commençons';
+
+  @override
+  String get onboardingLetStartSubTitle => 'Rejoignez la communauté automobile dès aujourd\'hui et découvrez la liberté d\'arriver là où vous devez aller, à tout moment et en tout lieu. Créez un compte pour commencer à rouler avec nous, ou si vous faites déjà partie de notre communauté, connectez-vous simplement pour continuer votre voyage.';
+
 
   @override
   String get selectLanguage => 'Choisir la langue';

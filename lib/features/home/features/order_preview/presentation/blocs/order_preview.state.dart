@@ -46,7 +46,7 @@ extension OrderPreviewLoadedStateX on OrderPreviewLoadedState {
       return const PaymentMethodUnion.wallet();
     }
     final defaultSavedPaymentMethod = paymentMethods.firstWhereOrNull(
-      (element) => element.maybeMap(
+          (element) => element.maybeMap(
         orElse: () => false,
         savedPaymentMethod: (savedPaymentMethod) => savedPaymentMethod.savedPaymentMethod.isDefault,
       ),

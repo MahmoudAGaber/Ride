@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_common/config/constants.dart';
 import 'package:flutter_common/core/color_palette/color_palette.dart';
+import 'package:flutter_common/core/presentation/app_card_sheet.dart';
+import 'package:flutter_common/core/presentation/card_handle.dart';
 import 'package:rider_flutter/config/env.dart';
 import 'package:rider_flutter/config/locator/locator.dart';
 import 'package:rider_flutter/config/router/app_router.dart';
@@ -42,8 +44,10 @@ class WaypointsInputSheet extends StatelessWidget {
     final homeBloc = locator<HomeCubit>();
     final selectedFieldCubit = locator<SelectedLocationFieldCubit>();
 
-    return Container(
-      color: ColorPalette.neutralVariant99,
+    return AppCardSheet(
+      // height: MediaQuery.of(context).size.height*.99,
+      // minSize: .85,
+      //color: ColorPalette.neutralVariant99,
       child: MultiBlocProvider(
         providers: [
           BlocProvider.value(
@@ -56,183 +60,187 @@ class WaypointsInputSheet extends StatelessWidget {
             value: locator<DestinationSuggestionsCubit>(),
           )
         ],
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Stack(
-                  children: [
-                    AppCloseButton(
-                      onPressed: () {
-                        homeBloc.closeWaypointsInput(waypoints: waypoints);
-                        locator<SelectedLocationFieldCubit>().onLocationFieldSelected(null);
-                      },
-                    ),
-                    Center(
-                      child: Text(
-                        context.translate.selectDestinations,
-                        style: context.titleMedium,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height*.83,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16,right: 16,bottom: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CardHandle(
+                    onPressed: () {},
+                  ),
+                  Stack(
+                    children: [
+                      AppCloseButton(
+                        onPressed: () {
+                          homeBloc.closeWaypointsInput(waypoints: waypoints);
+                          locator<SelectedLocationFieldCubit>().onLocationFieldSelected(null);
+                        },
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BlocBuilder<SelectedLocationFieldCubit, int?>(
-                      builder: (context, selectedLocationFieldState) {
-                        return Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: waypoints
-                                .mapIndexed(
-                                  (index, e) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    child: LocationTextfield(
-                                      key: UniqueKey(),
-                                      isFocused: selectedLocationFieldState == index,
-                                      onRemoveStop: () => homeBloc.onRemoveStop(index),
-                                      index: index,
-                                      totalCount: waypoints.length,
-                                      initialValue: e,
-                                      onFocused: () {
-                                        placeLookupBloc.onStarted();
-                                        selectedFieldCubit.onLocationFieldSelected(index);
-                                      },
-                                      onChanged: (value) {
-                                        final settingsState = locator<SettingsCubit>().state;
-                                        final locationState = locator<LocationCubit>().state;
-                                        locator<PlaceLookupBloc>().add(
-                                          PlaceLookupEvent.onQueryChanged(
-                                            query: value,
-                                            latLng: locationState.place?.latLng2,
-                                            radius: Env.placeSearchSearchRadius,
-                                            language: settingsState.locale,
-                                            mapProvider: settingsState.mapProviderEnum,
-                                          ),
-                                        );
-                                      },
-                                      onMapPressed: (value) {
-                                        selectedFieldCubit.onLocationFieldSelected(index);
-                                        showConfirmLocation(
-                                          waypoints[index] ??
-                                              locator<LocationCubit>().state.place ??
-                                              Constants.defaultLocation,
-                                        );
-                                      },
+                      Center(
+                        child: Text(
+                          context.translate.selectDestinations,
+                          style: context.titleMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BlocBuilder<SelectedLocationFieldCubit, int?>(
+                        builder: (context, selectedLocationFieldState) {
+                          return Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: waypoints
+                                  .mapIndexed(
+                                    (index, e) => Padding(
+                                      padding: const EdgeInsets.only(bottom: 16),
+                                      child: LocationTextfield(
+                                        key: UniqueKey(),
+                                        isFocused: selectedLocationFieldState == index,
+                                        onRemoveStop: () => homeBloc.onRemoveStop(index),
+                                        index: index,
+                                        totalCount: waypoints.length,
+                                        initialValue: e,
+                                        onFocused: () {
+                                          placeLookupBloc.onStarted();
+                                          selectedFieldCubit.onLocationFieldSelected(index);
+                                        },
+                                        onChanged: (value) {
+                                          final settingsState = locator<SettingsCubit>().state;
+                                          final locationState = locator<LocationCubit>().state;
+                                          locator<PlaceLookupBloc>().add(
+                                            PlaceLookupEvent.onQueryChanged(
+                                              query: value,
+                                              latLng: locationState.place?.latLng2,
+                                              radius: Env.placeSearchSearchRadius,
+                                              language: settingsState.locale,
+                                              mapProvider: settingsState.mapProviderEnum,
+                                            ),
+                                          );
+                                        },
+                                        onMapPressed: (value) {
+                                          selectedFieldCubit.onLocationFieldSelected(index);
+                                          showConfirmLocation(
+                                            waypoints[index] ??
+                                                locator<LocationCubit>().state.place ??
+                                                Constants.defaultLocation,
+                                          );
+                                        },
+                                      ),
                                     ),
+                                  )
+                                  .toList(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      // Column(
+                      //   mainAxisSize: MainAxisSize.min,
+                      //   children: [
+                      //     const SizedBox(
+                      //       height: 10,
+                      //     ),
+                      //     ...waypoints.mapIndexed((index, e) {
+                      //       return Column(
+                      //         children: [
+                      //           const SizedBox(
+                      //             height: 6,
+                      //           ),
+                      //           IconDestination(
+                      //             isPickupPoint: index == 0,
+                      //           ),
+                      //           const SizedBox(
+                      //             height: 6,
+                      //           ),
+                      //           if (index != waypoints.length - 1) const LineConnectDestinations(),
+                      //         ],
+                      //       );
+                      //     }),
+                      //     if (waypoints.length < 3) ...[
+                      //       const DottedLine(
+                      //         direction: Axis.vertical,
+                      //         dashColor: ColorPalette.neutral90,
+                      //         lineThickness: 3,
+                      //         lineLength: 24,
+                      //       ),
+                      //       const SizedBox(
+                      //         height: 6,
+                      //       ),
+                      //       AddSpotButton(onPressed: () => homeBloc.onAddStop())
+                      //     ]
+                      //   ],
+                      // )
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: BlocBuilder<SelectedLocationFieldCubit, int?>(
+                      builder: (context, state) {
+                        if (state == null) return const SizedBox();
+                        return BlocBuilder<PlaceLookupBloc, PlaceLookupState>(
+                          builder: (context, state) => PlaceLookupStateView(
+                            state: state,
+                            initialStateView: BlocBuilder<DestinationSuggestionsCubit, DestinationSuggestionsState>(
+                              builder: (context, state) => state.maybeMap(
+                                orElse: () => const SizedBox(),
+                                loaded: (loaded) => ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: loaded.recents.length,
+                                  separatorBuilder: (context, index) => const Divider(
+                                    thickness: 0.3,
+                                    indent: 48,
+                                    height: 16,
                                   ),
-                                )
-                                .toList(),
+                                  itemBuilder: (context, index) {
+                                    final place = loaded.recents[index];
+                                    return PlaceResultItem(
+                                      onPressed: () => showConfirmLocation(place),
+                                      title: place.title,
+                                      trailing: locator<LocationCubit>().state.distanceTo(
+                                            place.coordinates.latLng,
+                                            context,
+                                          ),
+                                      subtitle: place.address,
+                                      isRecent: true,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            onItemSelected: showConfirmLocation,
                           ),
                         );
                       },
                     ),
-                    const SizedBox(width: 8),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ...waypoints.mapIndexed((index, e) {
-                          return Column(
-                            children: [
-                              const SizedBox(
-                                height: 6,
-                              ),
-                              IconDestination(
-                                isPickupPoint: index == 0,
-                              ),
-                              const SizedBox(
-                                height: 6,
-                              ),
-                              if (index != waypoints.length - 1) const LineConnectDestinations(),
-                            ],
-                          );
-                        }),
-                        if (waypoints.length < 3) ...[
-                          const DottedLine(
-                            direction: Axis.vertical,
-                            dashColor: ColorPalette.neutral90,
-                            lineThickness: 3,
-                            lineLength: 24,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          AddSpotButton(onPressed: () => homeBloc.onAddStop())
-                        ]
-                      ],
-                    )
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Expanded(
-                  child: BlocBuilder<SelectedLocationFieldCubit, int?>(
-                    builder: (context, state) {
-                      if (state == null) return const SizedBox();
-                      return BlocBuilder<PlaceLookupBloc, PlaceLookupState>(
-                        builder: (context, state) => PlaceLookupStateView(
-                          state: state,
-                          initialStateView: BlocBuilder<DestinationSuggestionsCubit, DestinationSuggestionsState>(
-                            builder: (context, state) => state.maybeMap(
-                              orElse: () => const SizedBox(),
-                              loaded: (loaded) => ListView.separated(
-                                padding: EdgeInsets.zero,
-                                itemCount: loaded.recents.length,
-                                separatorBuilder: (context, index) => const Divider(
-                                  thickness: 0.3,
-                                  indent: 48,
-                                  height: 16,
-                                ),
-                                itemBuilder: (context, index) {
-                                  final place = loaded.recents[index];
-                                  return PlaceResultItem(
-                                    onPressed: () => showConfirmLocation(place),
-                                    title: place.title,
-                                    trailing: locator<LocationCubit>().state.distanceTo(
-                                          place.coordinates.latLng,
-                                          context,
-                                        ),
-                                    subtitle: place.address,
-                                    isRecent: true,
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          onItemSelected: showConfirmLocation,
-                        ),
-                      );
-                    },
                   ),
-                ),
-                const SizedBox(height: 16),
-                AppPrimaryButton(
-                  isDisabled: waypoints.nonNulls.length != waypoints.length,
-                  onPressed: () {
-                    final isAuthenticated = locator<AuthBloc>().state.isAuthenticated;
-                    if (isAuthenticated) {
-                      homeBloc.showPreview(
-                        waypoints: waypoints.whereNotNull().toList(),
-                        directions: [],
-                      );
-                    } else {
-                      context.router.push(const AuthRoute());
-                    }
-                  },
-                  child: Text(context.translate.confirm),
-                )
-              ],
+                  const SizedBox(height: 16),
+                  AppPrimaryButton(
+                    isDisabled: waypoints.nonNulls.length != waypoints.length,
+                    onPressed: () {
+                      final isAuthenticated = locator<AuthBloc>().state.isAuthenticated;
+                      if (isAuthenticated) {
+                        homeBloc.showPreview(
+                          waypoints: waypoints.whereNotNull().toList(),
+                          directions: [],
+                        );
+                      } else {
+                        context.router.push(const AuthRoute());
+                      }
+                    },
+                    child: Text(context.translate.confirm),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
     );
   }
 

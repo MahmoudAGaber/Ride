@@ -26,21 +26,22 @@ class PlaceResultItem extends StatelessWidget {
       minSize: 0,
       padding: const EdgeInsets.all(0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: ColorPalette.neutral90,
-                width: 1,
-              ),
-            ),
-            child: Icon(
-              icon,
-              color: iconColor,
-            ),
-          ),
+          // Container(
+          //   padding: const EdgeInsets.all(8),
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     border: Border.all(
+          //       color: ColorPalette.neutral90,
+          //       width: 1,
+          //     ),
+          //   ),
+          //   child: Icon(
+          //     icon,
+          //     color: iconColor,
+          //   ),
+          // ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

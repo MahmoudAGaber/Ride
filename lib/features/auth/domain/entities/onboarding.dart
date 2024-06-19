@@ -32,8 +32,8 @@ List<OnBoardingItem> onboardingItems(BuildContext context) => [
   ),
   OnBoardingItem(
     image: Assets.images.onboarding3,
-    title: context.translate.onboardingRewardTitle,
-    description: context.translate.onboardingRewardSubtitle,
+    title: context.translate.onboardingLetStart,
+    description: context.translate.onboardingLetStartSubTitle,
   ),
   OnBoardingItem(
     image: Assets.images.onboarding4,

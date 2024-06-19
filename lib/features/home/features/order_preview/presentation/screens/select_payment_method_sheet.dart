@@ -145,9 +145,14 @@ class _SelectPaymentMethodSheetState extends State<SelectPaymentMethodSheet> {
                               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
-                                  image: Assets.images.gradientTotal.provider(),
-                                  fit: BoxFit.cover,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    ColorPalette.primary20,
+                                    ColorPalette.primary40,
+                                    ColorPalette.primary50,
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
                                 ),
                               ),
                               child: Row(

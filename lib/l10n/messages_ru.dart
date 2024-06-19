@@ -12,6 +12,25 @@ class SRu extends S {
   }
 
   @override
+  String get call => 'вызов';
+
+  @override
+  String get message => 'сообщение';
+
+  @override
+  String get cancelMyRide => 'Отменить мою поездку';
+
+  @override
+  String get waitMyRide => 'Посещает mon trajet';
+
+  @override
+  String get cancelTrip => 'Отменить мою поездку';
+
+  @override
+  String get backButton=> 'Назад';
+
+
+  @override
   String get welcomeTitle => 'Добро пожаловать в приложение';
 
   @override
@@ -183,6 +202,14 @@ class SRu extends S {
 
   @override
   String get onboardingRewardSubtitle => 'Получайте дополнительные бонусы за приглашение друга, совершение поездок и многое другое...';
+
+
+  @override
+  String get onboardingLetStart => 'Давайте начнем';
+
+  @override
+  String get onboardingLetStartSubTitle => 'Присоединяйтесь к автомобильному сообществу сегодня и испытайте свободу добраться туда, куда вам нужно, в любое время и в любом месте. Зарегистрируйте учетную запись, чтобы начать кататься с нами, или, если вы уже являетесь частью нашего сообщества, просто войдите в систему, чтобы продолжить свое путешествие.';
+
 
   @override
   String get selectLanguage => 'Выберите язык';

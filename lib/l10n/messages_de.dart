@@ -11,6 +11,24 @@ class SDe extends S {
     return 'Copyright © $company, Alle Rechte vorbehalten.';
   }
 
+ @override
+  String get call => 'Call';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get cancelMyRide => 'Cancel my ride';
+
+  @override
+  String get waitMyRide => 'Wait for my ride';
+
+  @override
+  String get cancelTrip => 'Cancel Trip';
+
+  @override
+  String get backButton=> 'Back';
+
   @override
   String get welcomeTitle => 'Willkommen in der App';
 
@@ -183,6 +201,13 @@ class SDe extends S {
 
   @override
   String get onboardingRewardSubtitle => 'Erhalten Sie zusätzliche Boni für die Empfehlung eines Freundes, das Abschließen von Reisen und vieles mehr ...';
+
+  @override
+  String get onboardingLetStart => 'Let\'s Get Started';
+
+  @override
+  String get onboardingLetStartSubTitle => 'Treten Sie noch heute der Yo-Car-Community bei und erleben Sie die Freiheit, immer und überall an Ihr Ziel zu gelangen. Eröffnen Sie ein Konto, um mit uns zu fahren. Wenn Sie bereits Teil unserer Community sind, melden Sie sich einfach an, um Ihre Reise fortzusetzen.';
+
 
   @override
   String get selectLanguage => 'Sprache auswählen';

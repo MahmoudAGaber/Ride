@@ -6,34 +6,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'messages_ar.dart';
-import 'messages_bn.dart';
 import 'messages_de.dart';
 import 'messages_en.dart';
-import 'messages_es.dart';
-import 'messages_et.dart';
-import 'messages_fa.dart';
-import 'messages_fi.dart';
 import 'messages_fr.dart';
-import 'messages_hi.dart';
-import 'messages_hy.dart';
-import 'messages_id.dart';
-import 'messages_it.dart';
-import 'messages_ja.dart';
-import 'messages_ko.dart';
-import 'messages_ms.dart';
-import 'messages_nl.dart';
-import 'messages_no.dart';
-import 'messages_pl.dart';
-import 'messages_pt.dart';
-import 'messages_ro.dart';
 import 'messages_ru.dart';
-import 'messages_sv.dart';
-import 'messages_th.dart';
-import 'messages_tr.dart';
-import 'messages_uk.dart';
-import 'messages_ur.dart';
-import 'messages_vi.dart';
-import 'messages_zh.dart';
+import 'messages_ge.dart';
+
 
 /// Callers can lookup localized strings with an instance of S
 /// returned by `S.of(context)`.
@@ -117,36 +95,11 @@ abstract class S {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('bn'),
     Locale('de'),
     Locale('en'),
-    Locale('es'),
-    Locale('et'),
-    Locale('fa'),
-    Locale('fi'),
     Locale('fr'),
-    Locale('hi'),
-    Locale('hy'),
-    Locale('id'),
-    Locale('it'),
-    Locale('ja'),
-    Locale('ko'),
-    Locale('ms'),
-    Locale('nl'),
-    Locale('no'),
-    Locale('pl'),
-    Locale('pt'),
-    Locale('ro'),
     Locale('ru'),
-    Locale('sv'),
-    Locale('th'),
-    Locale('tr'),
-    Locale('uk'),
-    Locale('ur'),
-    Locale('vi'),
-    Locale('zh'),
-    Locale('zh', 'CN'),
-    Locale('zh', 'TW')
+    Locale('ka'),
   ];
 
   /// No description provided for @copyright_notice.
@@ -158,6 +111,19 @@ abstract class S {
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
+
+   String get call;
+
+  String get message;
+
+  String get cancelMyRide;
+
+  String get waitMyRide;
+
+  String get cancelTrip;
+
+  String get backButton;
+
   /// **'Welcome to the app'**
   String get welcomeTitle;
 
@@ -376,6 +342,9 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Get extra bonuses for referring a friend, completing trips and many more...'**
   String get onboardingRewardSubtitle;
+
+  String get onboardingLetStart;
+  String get onboardingLetStartSubTitle;
 
   /// No description provided for @selectLanguage.
   ///
@@ -2164,48 +2133,6 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Rider has been notified, Pickup the rider and start the ride'**
   String get noticeRiderNotified;
-
-  /// No description provided for @adminPanelOnboardingOneTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome to better suite'**
-  String get adminPanelOnboardingOneTitle;
-
-  /// No description provided for @adminPanelOnboardingOneSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Unleash the Power of Your Q-Commerce'**
-  String get adminPanelOnboardingOneSubtitle;
-
-  /// No description provided for @adminPanelOnboardingTwoTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Streamline your operations'**
-  String get adminPanelOnboardingTwoTitle;
-
-  /// No description provided for @adminPanelOnboardingTwoSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Take Control with Our Centralized Super Panel'**
-  String get adminPanelOnboardingTwoSubtitle;
-
-  /// No description provided for @rider.
-  ///
-  /// In en, this message translates to:
-  /// **'Rider'**
-  String get rider;
-
-  /// No description provided for @customer.
-  ///
-  /// In en, this message translates to:
-  /// **'Customer'**
-  String get customer;
-
-  /// No description provided for @back.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get back;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
@@ -2225,48 +2152,17 @@ class _SDelegate extends LocalizationsDelegate<S> {
 
 S lookupS(Locale locale) {
 
-  // Lookup logic when language+country codes are specified.
-  switch (locale.languageCode) {
-    case 'zh': {
-  switch (locale.countryCode) {
-    case 'CN': return SZhCn();
-case 'TW': return SZhTw();
-   }
-  break;
-   }
-  }
+
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'ar': return SAr();
-    case 'bn': return SBn();
     case 'de': return SDe();
     case 'en': return SEn();
-    case 'es': return SEs();
-    case 'et': return SEt();
-    case 'fa': return SFa();
-    case 'fi': return SFi();
     case 'fr': return SFr();
-    case 'hi': return SHi();
-    case 'hy': return SHy();
-    case 'id': return SId();
-    case 'it': return SIt();
-    case 'ja': return SJa();
-    case 'ko': return SKo();
-    case 'ms': return SMs();
-    case 'nl': return SNl();
-    case 'no': return SNo();
-    case 'pl': return SPl();
-    case 'pt': return SPt();
-    case 'ro': return SRo();
     case 'ru': return SRu();
-    case 'sv': return SSv();
-    case 'th': return STh();
-    case 'tr': return STr();
-    case 'uk': return SUk();
-    case 'ur': return SUr();
-    case 'vi': return SVi();
-    case 'zh': return SZh();
+    case 'ka': return SGe();
+
   }
 
   throw FlutterError(

@@ -45,8 +45,8 @@ class OrderPreviewCubit extends Cubit<OrderPreviewState> {
       args: args,
     );
     result.fold(
-      (l) => emit(OrderPreviewState.error(l.errorMessage)),
-      (r) {
+          (l) => emit(OrderPreviewState.error(l.errorMessage)),
+          (r) {
         final walletCredit = r.wallets.firstWhereOrNull((element) => element.$1 == r.currency)?.$2 ?? 0;
         final paymentMethods = [
           if (walletCredit > 0) const PaymentMethodUnion.wallet(),
@@ -101,8 +101,8 @@ class OrderPreviewCubit extends Cubit<OrderPreviewState> {
       ),
     );
     result.fold(
-      (l) => emit(OrderPreviewState.error(l.errorMessage)),
-      (r) => emit(
+          (l) => emit(OrderPreviewState.error(l.errorMessage)),
+          (r) => emit(
         OrderPreviewState.orderSubmitted(
           order: r,
           driverLocation: null,

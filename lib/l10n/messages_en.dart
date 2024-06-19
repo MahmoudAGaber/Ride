@@ -11,6 +11,25 @@ class SEn extends S {
     return 'Copyright © $company, All rights reserved.';
   }
 
+@override
+  String get call => 'Call';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get cancelMyRide => 'Cancel my ride';
+
+  @override
+  String get waitMyRide => 'Wait for my ride';
+
+  @override
+  String get cancelTrip => 'Cancel my ride';
+
+  @override
+  String get backButton=> 'Back';
+
+
   @override
   String get welcomeTitle => 'Welcome to the app';
 
@@ -183,6 +202,13 @@ class SEn extends S {
 
   @override
   String get onboardingRewardSubtitle => 'Get extra bonuses for referring a friend, completing trips and many more...';
+
+  @override
+  String get onboardingLetStart => 'Let\'s Get Started';
+
+  @override
+  String get onboardingLetStartSubTitle => 'Join the yo car community today, and experience the freedom of getting where you need to go, anytime, anywhere. Sign up for an account to start riding with us, or if you\'re already part of our community, simply log in to continue your journey.';
+
 
   @override
   String get selectLanguage => 'Select language';

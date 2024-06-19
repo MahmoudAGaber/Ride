@@ -11,6 +11,24 @@ class SAr extends S {
     return 'حقوق الطبع والنشر © $company, جميع الحقوق محفوظة.';
   }
 
+ @override
+  String get call => 'اتصل';
+
+  @override
+  String get message => 'رسالة';
+
+  @override
+  String get cancelMyRide => 'إلغاء رحلتي';
+
+  @override
+  String get waitMyRide => 'انتظر رحلتي';
+
+  @override
+  String get cancelTrip => 'إلغاء رحلتي';
+
+  @override
+  String get backButton=> 'رجوع';
+
   @override
   String get welcomeTitle => 'مرحبًا في التطبيق';
 
@@ -183,6 +201,13 @@ class SAr extends S {
 
   @override
   String get onboardingRewardSubtitle => 'احصل على مكافآت إضافية عند الإحالة على صديق، واستكمال الرحلات، والعديد من المزايا الأخرى...';
+
+  @override
+  String get onboardingLetStart => 'هيا بنا نبدأ';
+
+  @override
+  String get onboardingLetStartSubTitle => 'انضم إلى مجتمع yo car اليوم، واستمتع بحرية الوصول إلى المكان الذي تريد الذهاب إليه، في أي وقت وفي أي مكان. قم بالتسجيل للحصول على حساب لبدء الركوب معنا، أو إذا كنت بالفعل جزءًا من مجتمعنا، فما عليك سوى تسجيل الدخول لمواصلة رحلتك.';
+
 
   @override
   String get selectLanguage => 'اختر اللغة';

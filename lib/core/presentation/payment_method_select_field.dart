@@ -41,17 +41,17 @@ class PaymentMethodSelectField extends StatelessWidget {
                       duration: const Duration(milliseconds: 300),
                       child: paymentMethod == null
                           ? Text(
-                              "Select payment method",
-                              style: context.labelMedium?.copyWith(
-                                color: textColor,
-                              ),
-                            )
+                        "Select payment method",
+                        style: context.labelMedium?.copyWith(
+                          color: textColor,
+                        ),
+                      )
                           : Text(
-                              paymentMethod!.name(context),
-                              style: context.labelMedium?.copyWith(
-                                color: textColor,
-                              ),
-                            )),
+                        paymentMethod!.name(context),
+                        style: context.labelMedium?.copyWith(
+                          color: textColor,
+                        ),
+                      )),
                 ],
               ),
             ),
@@ -78,8 +78,8 @@ class PaymentMethodSelectField extends StatelessWidget {
   Widget icon(BuildContext context) => paymentMethod != null
       ? paymentMethod!.icon()
       : Icon(
-          Ionicons.card,
-          size: 24,
-          color: iconColor,
-        );
+    Ionicons.card,
+    size: 24,
+    color: iconColor,
+  );
 }

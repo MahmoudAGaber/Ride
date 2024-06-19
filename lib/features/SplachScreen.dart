@@ -38,8 +38,8 @@ class _SplachScreenState extends State<SplachScreen>  with SingleTickerProviderS
       final loggedIn = locator<AuthBloc>().state.isAuthenticated;
       if (status == AnimationStatus.completed) {
         loggedIn
-            ?Navigator.of(context).push(MaterialPageRoute(builder: (context)=> HomeScreen()))
-            :Navigator.of(context).push(MaterialPageRoute(builder: (context)=> AuthScreen()));
+            ?Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomeScreen()))
+            :Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> AuthScreen()));
       }
     });
   }

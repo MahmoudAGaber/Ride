@@ -26,6 +26,8 @@ class PlaceConfirmSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCardSheet(
+      // height: 220,
+      // minSize: .8,
       child: SafeArea(
         top: false,
         child: Padding(
@@ -34,14 +36,14 @@ class PlaceConfirmSheet extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "Drag the map to adjust the location",
-                style: context.titleMedium,
-                textAlign: TextAlign.start,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
+              // Text(
+              //   "Drag the map to adjust the location",
+              //   style: context.titleMedium,
+              //   textAlign: TextAlign.start,
+              // ),
+              // const SizedBox(
+              //   height: 8,
+              // ),
               BlocBuilder<PlaceConfirmCubit, PlaceConfirmState>(
                 builder: (context, state) {
                   return SizedBox(

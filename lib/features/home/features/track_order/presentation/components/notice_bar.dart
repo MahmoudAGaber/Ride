@@ -23,21 +23,21 @@ class NoticeBar extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: Row(
                     children: [
-                      const Icon(
-                        Ionicons.time,
-                        color: ColorPalette.neutral70,
-                      ),
-                      const SizedBox(width: 8),
+                      // const Icon(
+                      //   Ionicons.time,
+                      //   color: ColorPalette.neutral70,
+                      // ),
+                      // const SizedBox(width: 8),
                       Expanded(
                         child: StreamBuilder(
                           stream: Stream.periodic(const Duration(seconds: 1)),
                           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                             return Text(
-                              value.order.etaPickup?.isAfter(DateTime.now()) ?? false
+                              value.order.expectedAt.isAfter(DateTime.now())
                                   ? context.translate.driverShouldAriveInNotice
                                   : context.translate.driverShouldHaveArrivedNotice,
-                              style: context.labelMedium?.copyWith(
-                                color: ColorPalette.neutral99,
+                              style: context.titleSmall?.copyWith(
+                                color: ColorPalette.neutral0,
                               ),
                             );
                           },
@@ -46,7 +46,7 @@ class NoticeBar extends StatelessWidget {
                       StreamBuilder(
                         stream: Stream.periodic(const Duration(seconds: 1)),
                         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                          if (value.order.etaPickup?.isBefore(DateTime.now()) ?? true) return const SizedBox();
+                          if (value.order.expectedAt.isBefore(DateTime.now())) return const SizedBox();
                           return Container(
                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                             decoration: BoxDecoration(
@@ -58,7 +58,7 @@ class NoticeBar extends StatelessWidget {
                             child: Text(
                               _timeFromNow(
                                 context,
-                                value.order.etaPickup ?? DateTime.now(),
+                                value.order.expectedAt,
                               ),
                               style: context.labelSmall,
                             ),
@@ -74,16 +74,16 @@ class NoticeBar extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: Row(
                     children: [
-                      const Icon(
-                        Ionicons.time,
-                        color: ColorPalette.error60,
-                      ),
-                      const SizedBox(width: 8),
+                      // const Icon(
+                      //   Ionicons.time,
+                      //   color: ColorPalette.error60,
+                      // ),
+                      // const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           context.translate.driverArrivedNotice,
-                          style: context.labelMedium?.copyWith(
-                            color: ColorPalette.neutral99,
+                          style: context.titleSmall?.copyWith(
+                            color: ColorPalette.neutral0,
                           ),
                         ),
                       ),
@@ -96,47 +96,46 @@ class NoticeBar extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: Row(
                     children: [
-                      const Icon(
-                        Ionicons.time,
-                        color: ColorPalette.neutral70,
-                      ),
-                      const SizedBox(width: 8),
+                      // const Icon(
+                      //   Ionicons.time,
+                      //   color: ColorPalette.neutral70,
+                      // ),
+                      // const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           context.translate.headingToDestination,
-                          style: context.labelMedium?.copyWith(
-                            color: ColorPalette.neutral99,
+                          style: context.titleSmall?.copyWith(
+                            color: ColorPalette.neutral0,
                           ),
                         ),
                       ),
-                      if (value.order.etaPickup != null)
-                        StreamBuilder(
-                          stream: Stream.periodic(const Duration(seconds: 1)),
-                          builder: (context, state) {
-                            final arrivalTime = value.order.etaPickup!.add(
-                              Duration(
-                                minutes: value.order.duration ~/ 60,
+                      StreamBuilder(
+                        stream: Stream.periodic(const Duration(seconds: 1)),
+                        builder: (context, state) {
+                          final arrivalTime = value.order.expectedAt.add(
+                            Duration(
+                              minutes: value.order.duration ~/ 60,
+                            ),
+                          );
+                          if (arrivalTime.isBefore(DateTime.now())) return const SizedBox();
+                          return Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: ColorPalette.neutralVariant99,
+                              borderRadius: BorderRadius.circular(
+                                16,
                               ),
-                            );
-                            if (arrivalTime.isBefore(DateTime.now())) return const SizedBox();
-                            return Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: ColorPalette.neutralVariant99,
-                                borderRadius: BorderRadius.circular(
-                                  16,
-                                ),
+                            ),
+                            child: Text(
+                              _timeFromNow(
+                                context,
+                                arrivalTime,
                               ),
-                              child: Text(
-                                _timeFromNow(
-                                  context,
-                                  arrivalTime,
-                                ),
-                                style: context.labelSmall,
-                              ),
-                            );
-                          },
-                        )
+                              style: context.labelSmall,
+                            ),
+                          );
+                        },
+                      )
                     ],
                   ),
                 );

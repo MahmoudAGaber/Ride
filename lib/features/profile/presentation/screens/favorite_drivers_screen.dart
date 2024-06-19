@@ -70,7 +70,7 @@ class _FavoriteDriversScreenState extends State<FavoriteDriversScreen> {
                       empty: (_) => EmptyListState(
                             imagePath: Assets.images.rideHistoryEmptyState.path,
                             title: context.translate.noFavoriteDrivers,
-                            subTitle: context.translate.noFavoriteDriversDescription,
+                            subTitle: context.translate.noFavoriteDrivers,
                           ),
                       loaded: (loaded) {
                         return ListView.separated(

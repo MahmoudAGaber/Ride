@@ -114,6 +114,8 @@ class _OrderPreviewSheetState extends State<OrderPreviewSheet> with TickerProvid
                 orderSubmitted: (value) => const SizedBox.shrink(),
                 error: (value) => Text(value.message),
                 loading: (value) => AppCardSheet(
+                  // height: 600,
+                  // minSize: .5,
                   child: Assets.lottie.loading.lottie(
                     width: double.infinity,
                     height: 400,
@@ -129,7 +131,6 @@ class _OrderPreviewSheetState extends State<OrderPreviewSheet> with TickerProvid
                     paymentMethods: () {
                       final selectedService = locator<OrderPreviewOptionsCubit>().state.selectedService;
                       return SelectPaymentMethodSheet(
-                        isCashPaymentEnabled: selectedService?.isCashAllowed ?? false,
                         selectedPaymentMethod: locator<OrderPreviewOptionsCubit>().state.paymentMethod ??
                             loaded.defaultPaymentMethod(selectedService),
                         paymentMethods: loaded.paymentMethods,
@@ -140,6 +141,7 @@ class _OrderPreviewSheetState extends State<OrderPreviewSheet> with TickerProvid
                             : (selectedService?.priceAfterCouponApplied ?? 0) - (selectedService?.price ?? 0),
                         currency: loaded.currency,
                         serviceOptionFee: 0,
+                        isCashPaymentEnabled: true,
                       );
                     },
                   );

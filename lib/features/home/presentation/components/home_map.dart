@@ -77,12 +77,12 @@ class _HomeMapState extends State<HomeMap> {
                   return (context, key, address) {
                     if (value.index == 0) {
                       return AppMarkerPickup(
-                        address: "Drag to adjust",
+                        address: address ?? "",
                         key: key,
                       ).centerMarker;
                     } else {
                       return AppMarkerDropoff(
-                        address: "Drag to adjust",
+                        address: address ?? "",
                         key: key,
                       ).centerMarker;
                     }
