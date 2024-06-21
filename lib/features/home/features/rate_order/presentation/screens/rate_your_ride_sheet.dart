@@ -247,7 +247,7 @@ class _RateYourRideSheetState extends State<RateYourRideSheet> {
                                           ),
                                         ),
                                         const SizedBox(width: 4),
-                                        Text("context.translate.addToFavoriteDrivers"),
+                                        Text(context.translate.addToFavoriteDrivers)
                                       ],
                                     )
                                   ],

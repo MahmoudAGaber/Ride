@@ -11,7 +11,7 @@ class PayInCashDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppResponsiveDialog(
       header: (
-        Ionicons.cash,
+        Icon(Ionicons.cash),
         context.translate.payInCash,
         context.translate.payInCashDescription,
       ),

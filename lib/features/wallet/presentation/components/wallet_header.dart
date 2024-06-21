@@ -38,7 +38,7 @@ class WalletHeader extends StatelessWidget {
                         AppBackButton(
                           onPressed: () => context.router.pop(),
                         ),
-                        Text("Back", style: context.bodyMedium,)
+                        Text(context.translate.backButton, style: context.bodyMedium,)
                       ],
                     ),
                   ),

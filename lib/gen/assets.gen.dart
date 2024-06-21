@@ -788,6 +788,10 @@ class $AssetsCountriesGen {
   AssetGenImage get inKaSvg =>
       const AssetGenImage('assets/countries/in-ka.svg.png');
 
+  /// File path: assets/countries/in-ka.svg.png
+  AssetGenImage get ka =>
+      const AssetGenImage('assets/countries/ka.png');
+
   /// File path: assets/countries/in-mn.svg.png
   AssetGenImage get inMnSvg =>
       const AssetGenImage('assets/countries/in-mn.svg.png');
@@ -1792,6 +1796,7 @@ class $AssetsCountriesGen {
     inAsSvg,
     inGjSvg,
     inKaSvg,
+    ka,
     inMnSvg,
     inMzSvg,
     inOrSvg,
@@ -2060,9 +2065,6 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/car.png
   AssetGenImage get car => const AssetGenImage('assets/images/car.png');
-
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// File path: assets/images/card-background-1.png
   AssetGenImage get cardBackground1 =>

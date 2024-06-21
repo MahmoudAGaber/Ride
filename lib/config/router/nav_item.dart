@@ -19,7 +19,7 @@ enum NavItem {
   rideHistory,
   signIn,
   settings,
-  about,
+ // about,
   logout,
 }
 
@@ -31,13 +31,13 @@ const signedInNavItems = [
   NavItem.reservedRides,
   NavItem.rideHistory,
   NavItem.settings,
-  NavItem.about,
+//  NavItem.about,
 ];
 
 const signedOutNavItems = [
   NavItem.signIn,
   NavItem.settings,
-  NavItem.about,
+ // NavItem.about,
 ];
 
 extension NavItemX on NavItem {
@@ -61,8 +61,8 @@ extension NavItemX on NavItem {
         return context.translate.signInSignUp;
       case NavItem.settings:
         return context.translate.settings;
-      case NavItem.about:
-        return "context.translate.about";
+     // case NavItem.about:
+       // return context.translate.about;
       case NavItem.logout:
         return context.translate.logout;
     }
@@ -88,7 +88,7 @@ extension NavItemX on NavItem {
         return Ionicons.log_in;
       case NavItem.settings:
         return Ionicons.settings;
-      case NavItem.about:
+     // case NavItem.about:
         return Ionicons.information_circle;
       case NavItem.logout:
         return Ionicons.log_out;
@@ -132,23 +132,23 @@ extension NavItemX on NavItem {
         context.router.push(route);
         break;
 
-      case NavItem.about:
-        PackageInfo.fromPlatform().then(
-          (value) => showAboutDialog(
-            context: context,
-            applicationIcon: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Assets.images.logo.image(
-                width: 100,
-                height: 100,
-              ),
-            ),
-            applicationVersion: "${value.version} (Build ${value.buildNumber})",
-            applicationName: Env.appName,
-            applicationLegalese: "context.translate.copyright_notice(Env.companyName,)",
-          ),
-        );
-        break;
+      // case NavItem.about:
+      //   PackageInfo.fromPlatform().then(
+      //     (value) => showAboutDialog(
+      //       context: context,
+      //       applicationIcon: ClipRRect(
+      //         borderRadius: BorderRadius.circular(12),
+      //         child: Assets.images.logoHeader.image(
+      //           width: 100,
+      //           height: 100,
+      //         ),
+      //       ),
+      //       applicationVersion: "${value.version} (Build ${value.buildNumber})",
+      //       applicationName: Env.appName,
+      //       applicationLegalese: context.translate.copyright_notice(Env.companyName,)
+      //     ),
+      //   );
+      //   break;
 
       case NavItem.logout:
         locator<AuthBloc>().onLoggedOut();

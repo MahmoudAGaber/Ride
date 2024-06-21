@@ -41,7 +41,7 @@ class CancelRideDialog extends StatelessWidget {
       ),
       iconColor: ColorPalette.error40,
       header: (
-        Ionicons.close_circle,
+        Icon(Ionicons.close_circle),
         context.translate.rideCancellation,
         context.translate.cancelRideMessage,
       ),

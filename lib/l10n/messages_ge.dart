@@ -1073,8 +1073,7 @@ class SGe extends S {
   String get onTrip => 'მოგზაურობაზე';
 
   @override
-  String get noFavoriteDriversDescription => 'თქვენ შეგიძლიათ მონიშნოთ თქვენი რჩეული მძღოლები ფავორიტებად მოგზაურობის შემდეგ მათი შეფასებისას.
-  ';
+  String get noFavoriteDriversDescription => 'თქვენ შეგიძლიათ მონიშნოთ თქვენი რჩეული მძღოლები ფავორიტებად მოგზაურობის შემდეგ მათი შეფასებისას.';
 
   @override
   String get driverOnlineTitle => 'ეძებს მგზავრობას';
@@ -1126,4 +1125,37 @@ class SGe extends S {
 
   @override
   String get back => 'უკან';
+
+  @override
+  String get about => 'შესახებ';
+
+  @override
+  String copyright_notice(Object company) {
+    return 'საავტორო უფლება © $company, Ყველა უფლება დაცულია.';
+  }
+
+  @override
+  String distanceInFeets(num distance) {
+    final intl.NumberFormat distanceNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+
+    );
+    final String distanceString = distanceNumberFormat.format(distance);
+
+    return '$distanceString ფუტი';
+  }
+
+  @override
+  String distanceInMiles(num distance) {
+    final intl.NumberFormat distanceNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+
+    );
+    final String distanceString = distanceNumberFormat.format(distance);
+
+    return '$distanceString მი';
+  }
+
+  @override
+  String get feedbacksSummaryEmptyStateHeading => 'ჯერ არ არის გამოხმაურება';
 }
