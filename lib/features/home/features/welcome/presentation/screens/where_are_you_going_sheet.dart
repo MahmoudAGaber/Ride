@@ -36,8 +36,8 @@ class _WhereAreYouGoingSheetState extends State<WhereAreYouGoingSheet> {
   @override
   Widget build(BuildContext context) {
     return AppCardSheet(
-      // height: 440,
-      // minSize: .22,
+      height: 450,
+      minSize: .22,
       child: BlocProvider.value(
         value: locator<DestinationSuggestionsCubit>(),
         child: BlocListener<AuthBloc, AuthState>(
@@ -54,7 +54,7 @@ class _WhereAreYouGoingSheetState extends State<WhereAreYouGoingSheet> {
               bottom: MediaQuery.of(context).padding.bottom,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
                 CardHandle(
@@ -115,7 +115,9 @@ class _WhereAreYouGoingSheetState extends State<WhereAreYouGoingSheet> {
                                           ],
                                           directions: [],
                                         );
-                                      }, subtitle: item.address,);
+                                      },
+                                    subtitle: item.address,
+                                  );
                                 },
                                 separatorBuilder: (context, index) => const Divider(indent: 42),
                                 itemCount: value.recents.length,
@@ -125,10 +127,11 @@ class _WhereAreYouGoingSheetState extends State<WhereAreYouGoingSheet> {
                               const SizedBox(height: 12),
                               Text(
                                 context.translate.favoriteLocations,
-                                style: context.titleMedium,
+                                style: context.titleSmall,
                               ),
                               const SizedBox(height: 12),
                               SizedBox(
+                                height: 100,
                                 child: ListView.separated(
                                   shrinkWrap: true,
                                   padding: EdgeInsets.zero,

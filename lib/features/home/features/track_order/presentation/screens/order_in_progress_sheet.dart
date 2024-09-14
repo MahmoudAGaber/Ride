@@ -37,8 +37,8 @@ class OrderInProgressSheet extends StatelessWidget {
     print(order.status);
     return Container(
       child: AppCardSheet(
-       // height: order.status == OrderStatus.driverAccepted? 660 : 455,
-       // minSize: order.status == OrderStatus.driverAccepted? .255 : .37,
+       height: order.status == OrderStatus.driverAccepted? 660 : 455,
+       minSize: order.status == OrderStatus.driverAccepted? .270 : .37,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -54,12 +54,12 @@ class OrderInProgressSheet extends StatelessWidget {
                   SizedBox(width: 8,),
                   Container(
                     decoration: BoxDecoration(
-                        color: context.primary.withOpacity(.3),
+                        color:ColorPalette.primary70,
                         borderRadius: BorderRadius.circular(8)
                     ),
                     child:Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                      child: Text("${order.driver!.vehiclePlateNumber!}",style: context.bodySmall!.copyWith(color: Colors.black,fontWeight: FontWeight.w600),),
+                      child: Text("${order.driver!.vehiclePlateNumber!}",style: context.bodyMedium!.copyWith(color: Colors.black,fontWeight: FontWeight.bold),),
                     ),
                   )
                 ],
@@ -126,7 +126,7 @@ class OrderInProgressSheet extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(context.translate.paymentMethods,style: context.titleSmall,),
+                            Text(context.translate.paymentMethods,style: context.titleSmall!.copyWith(fontSize: 17),),
                           ],
                         ),
                         SizedBox(height: 6,),
@@ -149,7 +149,7 @@ class OrderInProgressSheet extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(context.translate.tripDetails,style: context.titleSmall,),
+                            Text(context.translate.tripDetails,style: context.titleSmall!.copyWith(fontSize: 17),),
                           ],
                         ),
                         SizedBox(height: 8,),
@@ -213,7 +213,7 @@ class OrderInProgressSheet extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             //Icon(Icons.close),
-                            Text(context.translate.cancelTrip,style: context.bodyMedium!.copyWith(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w500,fontSize: 15),),
+                            Text(context.translate.cancelTrip,style: context.bodyMedium!.copyWith(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w600,fontSize: 15),),
 
                           ],
                         ),

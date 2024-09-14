@@ -35,7 +35,7 @@ class AppFavoriteLocationItem extends StatelessWidget {
             ),
             child: Icon(
               address?.type.icon ?? type.icon,
-              size: 22,
+              size: 20,
               color: ColorPalette.primary30,
             ),
           ),
@@ -46,7 +46,7 @@ class AppFavoriteLocationItem extends StatelessWidget {
               children: [
                 Text(
                   address?.type.name(context) ?? type.name(context),
-                  style: context.labelLarge?.copyWith(
+                  style: context.labelMedium?.copyWith(
                     color: ColorPalette.neutral10,
                   ),
                 ),

@@ -37,7 +37,7 @@ class NoticeBar extends StatelessWidget {
                                   ? context.translate.driverShouldAriveInNotice
                                   : context.translate.driverShouldHaveArrivedNotice,
                               style: context.titleSmall?.copyWith(
-                                color: ColorPalette.neutral0,
+                                color: ColorPalette.neutral0,fontSize: 17
                               ),
                             );
                           },

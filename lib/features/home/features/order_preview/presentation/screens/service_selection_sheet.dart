@@ -49,8 +49,8 @@ class _ServicesSelectionSheetState extends State<ServicesSelectionSheet> with Ti
     final remoteDataCubit = locator<OrderPreviewCubit>();
 
     return AppCardSheet(
-     // height: 490,
-     //  minSize: .05,
+     height: 490,
+      minSize: .85,
       child: BlocBuilder<OrderPreviewOptionsCubit, OrderPreviewOptionsState>(
         builder: (context, stateOptions) {
           return SafeArea(

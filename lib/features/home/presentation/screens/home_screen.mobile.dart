@@ -50,7 +50,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile> {
           ),
           LayoutId(
             id: MobileLayoutDelegate.cardLayoutId,
-            child: const HomeInfoPanel(),
+            child:  HomeInfoPanel(),
           ),
           LayoutId(
             id: MobileLayoutDelegate.myLocationButtonId,

@@ -23,8 +23,8 @@ class HomeInfoPanel extends StatelessWidget {
           duration: AnimationDuration.pageStateTransitionMobile,
           child: state.map(
             loading: (_) => AppCardSheet(
-              // height: 350,
-              // minSize: .25,
+              height: 350,
+              minSize: .25,
               child: Assets.lottie.loading.lottie(
                 height: 100,
                 width: double.infinity,

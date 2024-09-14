@@ -19,8 +19,8 @@ class LookingForDriverSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCardSheet(
-     // height: 300,
-     // minSize: .25,
+     height: 300,
+     minSize: .28,
       child: SafeArea(
         top: false,
         child: Column(

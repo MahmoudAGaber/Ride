@@ -7,6 +7,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Env {
   static final String serverUrl = dotenv.maybeGet('BASE_URL') ?? "http://ec2-13-51-228-234.eu-north-1.compute.amazonaws.com:4000/";
+ // static final String serverUrl = dotenv.maybeGet('BASE_URL') ?? "http://192.168.1.3:3000/";
+
   static final String gqlEndpoint = '${serverUrl}graphql';
   static bool isDemoMode = dotenv.maybeGet('DEMO_MODE') == 'false';
   static String appName = dotenv.maybeGet('APP_NAME') ?? "YoCar";

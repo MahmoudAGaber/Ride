@@ -26,8 +26,8 @@ class PlaceConfirmSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCardSheet(
-      // height: 220,
-      // minSize: .8,
+      height: 220,
+      minSize: .85,
       child: SafeArea(
         top: false,
         child: Padding(

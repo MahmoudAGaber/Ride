@@ -45,8 +45,8 @@ class WaypointsInputSheet extends StatelessWidget {
     final selectedFieldCubit = locator<SelectedLocationFieldCubit>();
 
     return AppCardSheet(
-      // height: MediaQuery.of(context).size.height*.99,
-      // minSize: .85,
+      height: MediaQuery.of(context).size.height*.99,
+      minSize: .85,
       //color: ColorPalette.neutralVariant99,
       child: MultiBlocProvider(
         providers: [
@@ -63,7 +63,7 @@ class WaypointsInputSheet extends StatelessWidget {
         child: SizedBox(
           height: MediaQuery.of(context).size.height*.83,
             child: Padding(
-              padding: const EdgeInsets.only(left: 16,right: 16,bottom: 16),
+              padding: const EdgeInsets.only(left: 16,right: 16,bottom: 16,top: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,

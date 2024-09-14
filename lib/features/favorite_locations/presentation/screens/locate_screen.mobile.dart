@@ -86,8 +86,8 @@ class _LocateFavoriteLocationScreenMobileState extends State<LocateFavoriteLocat
                 initial: (_) => true,
               );
               return AppCardSheet(
-                // height: 300,
-                // minSize: .5,
+                height: 300,
+                minSize: .5,
                 isFullScreen: !isInitial,
                 child: Padding(
                   padding: const EdgeInsets.all(16).copyWith(top: isInitial ? 0 : 32),
